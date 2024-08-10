@@ -83,14 +83,5 @@ namespace hal
 		{
 			HAL_NVIC_EnableIRQ(irq_n);
 		}
-
-		/// <summary>
-		///		禁用中断。
-		/// </summary>
-		/// <param name="irq_n">中断号</param>
-		static void DisableIRQ(IRQn_Type irq_n)
-		{
-			HAL_NVIC_DisableIRQ(irq_n);
-		}
 	};
 }

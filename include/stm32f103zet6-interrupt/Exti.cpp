@@ -56,7 +56,7 @@ void hal::Exti::Register(int line_id, std::function<void()> callback)
 	{
 	case 0:
 	{
-		Interrupt::DisableIRQ(IRQn_Type::EXTI0_IRQn);
+		DI_InterruptSwitch().DisableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI0_IRQn));
 		_on_exti0_interrupt = callback;
 		Interrupt::SetPriority(IRQn_Type::EXTI0_IRQn, 4, 0);
 		Interrupt::EnableIRQ(IRQn_Type::EXTI0_IRQn);
@@ -64,7 +64,7 @@ void hal::Exti::Register(int line_id, std::function<void()> callback)
 	}
 	case 1:
 	{
-		Interrupt::DisableIRQ(IRQn_Type::EXTI1_IRQn);
+		DI_InterruptSwitch().DisableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI1_IRQn));
 		_on_exti1_interrupt = callback;
 		Interrupt::SetPriority(IRQn_Type::EXTI1_IRQn, 4, 0);
 		Interrupt::EnableIRQ(IRQn_Type::EXTI1_IRQn);
@@ -72,7 +72,7 @@ void hal::Exti::Register(int line_id, std::function<void()> callback)
 	}
 	case 2:
 	{
-		Interrupt::DisableIRQ(IRQn_Type::EXTI2_IRQn);
+		DI_InterruptSwitch().DisableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI2_IRQn));
 		_on_exti2_interrupt = callback;
 		Interrupt::SetPriority(IRQn_Type::EXTI2_IRQn, 4, 0);
 		Interrupt::EnableIRQ(IRQn_Type::EXTI2_IRQn);
@@ -80,7 +80,7 @@ void hal::Exti::Register(int line_id, std::function<void()> callback)
 	}
 	case 3:
 	{
-		Interrupt::DisableIRQ(IRQn_Type::EXTI3_IRQn);
+		DI_InterruptSwitch().DisableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI3_IRQn));
 		_on_exti3_interrupt = callback;
 		Interrupt::SetPriority(IRQn_Type::EXTI3_IRQn, 4, 0);
 		Interrupt::EnableIRQ(IRQn_Type::EXTI3_IRQn);
@@ -88,7 +88,7 @@ void hal::Exti::Register(int line_id, std::function<void()> callback)
 	}
 	case 4:
 	{
-		Interrupt::DisableIRQ(IRQn_Type::EXTI4_IRQn);
+		DI_InterruptSwitch().DisableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI4_IRQn));
 		_on_exti4_interrupt = callback;
 		Interrupt::SetPriority(IRQn_Type::EXTI4_IRQn, 4, 0);
 		Interrupt::EnableIRQ(IRQn_Type::EXTI4_IRQn);
@@ -107,31 +107,31 @@ void hal::Exti::Unregister(int line_id)
 	{
 	case 0:
 	{
-		Interrupt::DisableIRQ(IRQn_Type::EXTI0_IRQn);
+		DI_InterruptSwitch().DisableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI0_IRQn));
 		_on_exti0_interrupt = nullptr;
 		break;
 	}
 	case 1:
 	{
-		Interrupt::DisableIRQ(IRQn_Type::EXTI1_IRQn);
+		DI_InterruptSwitch().DisableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI1_IRQn));
 		_on_exti1_interrupt = nullptr;
 		break;
 	}
 	case 2:
 	{
-		Interrupt::DisableIRQ(IRQn_Type::EXTI2_IRQn);
+		DI_InterruptSwitch().DisableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI2_IRQn));
 		_on_exti2_interrupt = nullptr;
 		break;
 	}
 	case 3:
 	{
-		Interrupt::DisableIRQ(IRQn_Type::EXTI3_IRQn);
+		DI_InterruptSwitch().DisableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI3_IRQn));
 		_on_exti3_interrupt = nullptr;
 		break;
 	}
 	case 4:
 	{
-		Interrupt::DisableIRQ(IRQn_Type::EXTI4_IRQn);
+		DI_InterruptSwitch().DisableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI4_IRQn));
 		_on_exti4_interrupt = nullptr;
 		break;
 	}
