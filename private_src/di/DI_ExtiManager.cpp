@@ -1,6 +1,6 @@
+#include <Exti.h>
 #include <base/Initializer.h>
 #include <bsp-interface/di.h>
-#include <stm32f103zet6-interrupt/Exti.h>
 #include <stm32f103zet6-interrupt/Interrupt.h>
 
 bsp::IExtiManager &DI_ExtiManager()

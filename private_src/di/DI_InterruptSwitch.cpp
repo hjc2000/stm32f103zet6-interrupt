@@ -1,4 +1,4 @@
-#include <stm32f103zet6-interrupt/InterruptSwitch.h>
+#include <InterruptSwitch.h>
 
 bsp::IInterruptSwitch &DI_InterruptSwitch()
 {
