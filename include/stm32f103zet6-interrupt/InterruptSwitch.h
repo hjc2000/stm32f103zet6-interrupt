@@ -17,7 +17,7 @@ namespace bsp
 
 		void EnableInterrupt(uint32_t irq) noexcept override
 		{
-			hal::Interrupt::EnableIRQ(static_cast<IRQn_Type>(irq));
+			HAL_NVIC_EnableIRQ(static_cast<IRQn_Type>(irq));
 		}
 
 		/// @brief 禁止全局中断

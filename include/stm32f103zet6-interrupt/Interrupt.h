@@ -74,14 +74,5 @@ namespace hal
 		{
 			HAL_NVIC_SetPriority(irq_n, preempt_priority, sub_priority);
 		}
-
-		/// <summary>
-		///		使能中断。
-		/// </summary>
-		/// <param name="irq_n">中断号</param>
-		static void EnableIRQ(IRQn_Type irq_n)
-		{
-			HAL_NVIC_EnableIRQ(irq_n);
-		}
 	};
 }

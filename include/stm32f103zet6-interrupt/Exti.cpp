@@ -59,7 +59,7 @@ void hal::Exti::Register(int line_id, std::function<void()> callback)
 		DI_InterruptSwitch().DisableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI0_IRQn));
 		_on_exti0_interrupt = callback;
 		Interrupt::SetPriority(IRQn_Type::EXTI0_IRQn, 4, 0);
-		Interrupt::EnableIRQ(IRQn_Type::EXTI0_IRQn);
+		DI_InterruptSwitch().EnableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI0_IRQn));
 		break;
 	}
 	case 1:
@@ -67,7 +67,7 @@ void hal::Exti::Register(int line_id, std::function<void()> callback)
 		DI_InterruptSwitch().DisableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI1_IRQn));
 		_on_exti1_interrupt = callback;
 		Interrupt::SetPriority(IRQn_Type::EXTI1_IRQn, 4, 0);
-		Interrupt::EnableIRQ(IRQn_Type::EXTI1_IRQn);
+		DI_InterruptSwitch().EnableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI1_IRQn));
 		break;
 	}
 	case 2:
@@ -75,7 +75,7 @@ void hal::Exti::Register(int line_id, std::function<void()> callback)
 		DI_InterruptSwitch().DisableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI2_IRQn));
 		_on_exti2_interrupt = callback;
 		Interrupt::SetPriority(IRQn_Type::EXTI2_IRQn, 4, 0);
-		Interrupt::EnableIRQ(IRQn_Type::EXTI2_IRQn);
+		DI_InterruptSwitch().EnableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI2_IRQn));
 		break;
 	}
 	case 3:
@@ -83,7 +83,7 @@ void hal::Exti::Register(int line_id, std::function<void()> callback)
 		DI_InterruptSwitch().DisableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI3_IRQn));
 		_on_exti3_interrupt = callback;
 		Interrupt::SetPriority(IRQn_Type::EXTI3_IRQn, 4, 0);
-		Interrupt::EnableIRQ(IRQn_Type::EXTI3_IRQn);
+		DI_InterruptSwitch().EnableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI3_IRQn));
 		break;
 	}
 	case 4:
@@ -91,7 +91,7 @@ void hal::Exti::Register(int line_id, std::function<void()> callback)
 		DI_InterruptSwitch().DisableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI4_IRQn));
 		_on_exti4_interrupt = callback;
 		Interrupt::SetPriority(IRQn_Type::EXTI4_IRQn, 4, 0);
-		Interrupt::EnableIRQ(IRQn_Type::EXTI4_IRQn);
+		DI_InterruptSwitch().EnableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI4_IRQn));
 		break;
 	}
 	default:
