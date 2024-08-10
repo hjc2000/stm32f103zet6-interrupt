@@ -4,7 +4,7 @@
 #include <bsp-interface/di.h>
 #include <stm32f103zet6-interrupt/Interrupt.h>
 
-namespace bsp
+namespace hal
 {
 	class InterruptSwitch
 		: public bsp::IInterruptSwitch

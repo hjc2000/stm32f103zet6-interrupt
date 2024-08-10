@@ -4,8 +4,6 @@
 #include <stdexcept>
 #include <stm32f103zet6-interrupt/Interrupt.h>
 
-using namespace hal;
-
 static base::Initializer _initializer{
 	[]()
 	{
@@ -152,45 +150,45 @@ extern "C"
 		{
 		case GPIO_PIN_0:
 		{
-			if (Exti::Instance()._on_exti0_interrupt)
+			if (hal::Exti::Instance()._on_exti0_interrupt)
 			{
-				Exti::Instance()._on_exti0_interrupt();
+				hal::Exti::Instance()._on_exti0_interrupt();
 			}
 
 			break;
 		}
 		case GPIO_PIN_1:
 		{
-			if (Exti::Instance()._on_exti1_interrupt)
+			if (hal::Exti::Instance()._on_exti1_interrupt)
 			{
-				Exti::Instance()._on_exti1_interrupt();
+				hal::Exti::Instance()._on_exti1_interrupt();
 			}
 
 			break;
 		}
 		case GPIO_PIN_2:
 		{
-			if (Exti::Instance()._on_exti2_interrupt)
+			if (hal::Exti::Instance()._on_exti2_interrupt)
 			{
-				Exti::Instance()._on_exti2_interrupt();
+				hal::Exti::Instance()._on_exti2_interrupt();
 			}
 
 			break;
 		}
 		case GPIO_PIN_3:
 		{
-			if (Exti::Instance()._on_exti3_interrupt)
+			if (hal::Exti::Instance()._on_exti3_interrupt)
 			{
-				Exti::Instance()._on_exti3_interrupt();
+				hal::Exti::Instance()._on_exti3_interrupt();
 			}
 
 			break;
 		}
 		case GPIO_PIN_4:
 		{
-			if (Exti::Instance()._on_exti4_interrupt)
+			if (hal::Exti::Instance()._on_exti4_interrupt)
 			{
-				Exti::Instance()._on_exti4_interrupt();
+				hal::Exti::Instance()._on_exti4_interrupt();
 			}
 
 			break;

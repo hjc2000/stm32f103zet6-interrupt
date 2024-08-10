@@ -2,5 +2,5 @@
 
 bsp::IInterruptSwitch &DI_InterruptSwitch()
 {
-	return bsp::InterruptSwitch::Instance();
+	return hal::InterruptSwitch::Instance();
 }

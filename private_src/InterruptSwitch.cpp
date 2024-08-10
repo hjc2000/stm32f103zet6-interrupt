@@ -4,5 +4,5 @@
 static base::Initializer _init{
 	[]()
 	{
-		bsp::InterruptSwitch::Instance();
+		hal::InterruptSwitch::Instance();
 	}};
