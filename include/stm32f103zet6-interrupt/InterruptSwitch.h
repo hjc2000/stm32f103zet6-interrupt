@@ -9,7 +9,16 @@ namespace bsp
 	class InterruptSwitch
 		: public bsp::IInterruptSwitch
 	{
+	private:
+		InterruptSwitch() = default;
+
 	public:
+		static InterruptSwitch &Instance()
+		{
+			static InterruptSwitch o;
+			return o;
+		}
+
 		void DisableInterrupt(uint32_t irq) noexcept override
 		{
 			HAL_NVIC_DisableIRQ(static_cast<IRQn_Type>(irq));

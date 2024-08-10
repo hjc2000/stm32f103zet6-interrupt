@@ -2,6 +2,5 @@
 
 bsp::IInterruptSwitch &DI_InterruptSwitch()
 {
-	static bsp::InterruptSwitch o;
-	return o;
+	return bsp::InterruptSwitch::Instance();
 }
