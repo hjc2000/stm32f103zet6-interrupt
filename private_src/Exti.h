@@ -1,4 +1,6 @@
 #pragma once
+#include <base/SingletonGetter.h>
+#include <bsp-interface/di/interrupt.h>
 #include <bsp-interface/interrupt/IExtiManager.h>
 #include <functional>
 
@@ -30,8 +32,27 @@ namespace hal
     public:
         static Exti &Instance()
         {
-            static Exti o;
-            return o;
+            class Getter : public base::SingletonGetter<Exti>
+            {
+            public:
+                std::unique_ptr<Exti> Create() override
+                {
+                    return std::unique_ptr<Exti>{new Exti{}};
+                }
+
+                void Lock() override
+                {
+                    DI_InterruptSwitch().DisableGlobalInterrupt();
+                }
+
+                void Unlock() override
+                {
+                    DI_InterruptSwitch().EnableGlobalInterrupt();
+                }
+            };
+
+            Getter g;
+            return g.Instance();
         }
 
         /// @brief 注册使用一条外部中断线。
