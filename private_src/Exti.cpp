@@ -38,89 +38,92 @@ hal::Exti::Exti()
 
 void hal::Exti::Register(int line_id, std::function<void()> callback)
 {
-    switch (line_id)
-    {
-    case 0:
+    DI_InterruptSwitch().DoGlobalCriticalWork(
+        [&]()
         {
-            DI_InterruptSwitch().DisableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI0_IRQn));
-            _on_exti0_interrupt = callback;
-            DI_InterruptSwitch().EnableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI0_IRQn), 4);
-            break;
-        }
-    case 1:
-        {
-            DI_InterruptSwitch().DisableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI1_IRQn));
-            _on_exti1_interrupt = callback;
-            DI_InterruptSwitch().EnableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI1_IRQn), 4);
-            break;
-        }
-    case 2:
-        {
-            DI_InterruptSwitch().DisableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI2_IRQn));
-            _on_exti2_interrupt = callback;
-            DI_InterruptSwitch().EnableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI2_IRQn), 4);
-            break;
-        }
-    case 3:
-        {
-            DI_InterruptSwitch().DisableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI3_IRQn));
-            _on_exti3_interrupt = callback;
-            DI_InterruptSwitch().EnableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI3_IRQn), 4);
-            break;
-        }
-    case 4:
-        {
-            DI_InterruptSwitch().DisableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI4_IRQn));
-            _on_exti4_interrupt = callback;
-            DI_InterruptSwitch().EnableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI4_IRQn), 4);
-            break;
-        }
-    default:
-        {
-            throw std::invalid_argument{"pin 超出范围。"};
-        }
-    }
+            switch (line_id)
+            {
+            case 0:
+                {
+                    _on_exti0_interrupt = callback;
+                    DI_InterruptSwitch().EnableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI0_IRQn), 4);
+                    break;
+                }
+            case 1:
+                {
+                    _on_exti1_interrupt = callback;
+                    DI_InterruptSwitch().EnableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI1_IRQn), 4);
+                    break;
+                }
+            case 2:
+                {
+                    _on_exti2_interrupt = callback;
+                    DI_InterruptSwitch().EnableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI2_IRQn), 4);
+                    break;
+                }
+            case 3:
+                {
+                    _on_exti3_interrupt = callback;
+                    DI_InterruptSwitch().EnableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI3_IRQn), 4);
+                    break;
+                }
+            case 4:
+                {
+                    _on_exti4_interrupt = callback;
+                    DI_InterruptSwitch().EnableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI4_IRQn), 4);
+                    break;
+                }
+            default:
+                {
+                    throw std::invalid_argument{"pin 超出范围。"};
+                }
+            }
+        });
 }
 
 void hal::Exti::Unregister(int line_id)
 {
-    switch (line_id)
-    {
-    case 0:
+    DI_InterruptSwitch().DoGlobalCriticalWork(
+        [&]()
         {
-            DI_InterruptSwitch().DisableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI0_IRQn));
-            _on_exti0_interrupt = nullptr;
-            break;
-        }
-    case 1:
-        {
-            DI_InterruptSwitch().DisableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI1_IRQn));
-            _on_exti1_interrupt = nullptr;
-            break;
-        }
-    case 2:
-        {
-            DI_InterruptSwitch().DisableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI2_IRQn));
-            _on_exti2_interrupt = nullptr;
-            break;
-        }
-    case 3:
-        {
-            DI_InterruptSwitch().DisableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI3_IRQn));
-            _on_exti3_interrupt = nullptr;
-            break;
-        }
-    case 4:
-        {
-            DI_InterruptSwitch().DisableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI4_IRQn));
-            _on_exti4_interrupt = nullptr;
-            break;
-        }
-    default:
-        {
-            throw std::invalid_argument{"pin 超出范围。"};
-        }
-    }
+            switch (line_id)
+            {
+            case 0:
+                {
+                    DI_InterruptSwitch().DisableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI0_IRQn));
+                    _on_exti0_interrupt = nullptr;
+                    break;
+                }
+            case 1:
+                {
+                    DI_InterruptSwitch().DisableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI1_IRQn));
+                    _on_exti1_interrupt = nullptr;
+                    break;
+                }
+            case 2:
+                {
+                    DI_InterruptSwitch().DisableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI2_IRQn));
+                    _on_exti2_interrupt = nullptr;
+                    break;
+                }
+            case 3:
+                {
+                    DI_InterruptSwitch().DisableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI3_IRQn));
+                    _on_exti3_interrupt = nullptr;
+                    break;
+                }
+            case 4:
+                {
+                    DI_InterruptSwitch().DisableInterrupt(static_cast<uint32_t>(IRQn_Type::EXTI4_IRQn));
+                    _on_exti4_interrupt = nullptr;
+                    break;
+                }
+            default:
+                {
+                    throw std::invalid_argument{"pin 超出范围。"};
+                }
+            }
+        });
 }
 
 extern "C"
