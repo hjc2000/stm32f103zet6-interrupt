@@ -29,14 +29,33 @@ void DI_EnableInterrupt(uint32_t irq, uint32_t priority) noexcept
     HAL_NVIC_EnableIRQ(static_cast<IRQn_Type>(irq));
 }
 
+namespace
+{
+    int32_t volatile _disable_global_interrupt_times = 0;
+}
+
 /// @brief 禁止全局中断
 void DI_DisableGlobalInterrupt() noexcept
 {
     __disable_irq();
+    _disable_global_interrupt_times = _disable_global_interrupt_times + 1;
 }
 
 /// @brief 启用全局中断
 void DI_EnableGlobalInterrupt() noexcept
 {
-    __enable_irq();
+    __disable_irq();
+    _disable_global_interrupt_times = _disable_global_interrupt_times - 1;
+    if (_disable_global_interrupt_times <= 0)
+    {
+        _disable_global_interrupt_times = 0;
+        __enable_irq();
+    }
+}
+
+/// @brief 全局中断是否被禁止了。
+/// @return
+bool DI_GlobalInterruptIsDisabled() noexcept
+{
+    return _disable_global_interrupt_times > 0;
 }
